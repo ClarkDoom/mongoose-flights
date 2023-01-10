@@ -1,0 +1,20 @@
+<%- include('../partials/html-head') %>
+
+<%- include('../partials/nav') %>
+
+<h1>Flight Details</h1>
+<a href="/flights/<%= flight._id %>/edit">Edit Flight Details</a>
+
+<h3>Airline:</h3>
+<p><%= flight.airline %></p>
+
+<h3>Flight Number</h3>
+<p><%= flight.flightNo %> </p>
+
+<h3>Airport</h3>
+<p><%= flight.airport %></p>
+
+<h3>Departs</h3>
+<p><%= flight.departs %> </p>
+
+<%- include('../partials/footer') %>
