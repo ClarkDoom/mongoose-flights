@@ -4,7 +4,7 @@
 
 <main>
   <h2><%= title %> </h2>
-  <form id="new-form" action="/flights/<%= flight.id %>?_method=PUT" method="POST">
+  <form id="new-form" action="/flights/<%= flight.id %>/?_method=PUT" method="POST">
 
     <label for="airline-input">Airline</label>
     <input value="<%= flight.airline %> " type="text" name="airline" id="airline-input">

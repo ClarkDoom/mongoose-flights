@@ -1,10 +1,16 @@
 import mongoose from "mongoose"
 
 const Schema = mongoose.Schema
+
+const ticketSchema = new Schema({
+  seat: {type: String, match: /[A-F][1-9]\d?/ },
+  price: {type: Number, min: 0}
+})
+
 const flightSchema = new Schema({
   airline: { 
     type: String, 
-    enum: ["American", "Southwest", "United"] 
+    // enum: ["American", "Southwest", "United"] 
   },
   airport: { 
     type: String, 
@@ -12,16 +18,21 @@ const flightSchema = new Schema({
     default: "DEN" 
   },
   departs: { 
-    type: Date, 
+    type: Date,
     default: function(){
-      return new Date().getFullYear() + 1
-  }},
-  flightNo: { 
+      let date = new Date()
+      // Date.setFullYear(date.getFullYear()+1)
+      return date.toLocaleDateString()
+    }
+  },
+  flightNo: {  
     type: Number, 
     min: 10, 
     max: 9999 
   },
-
+  tickets: [ticketSchema]
+}, {
+  timestamps: true
 })
 
 const Flight = mongoose.model('Flight', flightSchema)
@@ -29,3 +40,4 @@ const Flight = mongoose.model('Flight', flightSchema)
 export {
   Flight
 }
+
