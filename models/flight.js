@@ -19,18 +19,31 @@ const flightSchema = new Schema({
   },
   departs: { 
     type: Date,
-    default: function(){
-      let date = new Date()
-      // Date.setFullYear(date.getFullYear()+1)
-      return date.toLocaleDateString()
-    }
+    // default: function(){
+      // return new Date()
+
+      // let dateNowPlusOneYear = new Date().setFullYear()+1
+      // return dateNowPlusOneYear
+
+
+      // const currentDate = new Date();
+
+      // const currentDayOfMonth = currentDate.getDate();
+      // const currentMonth = currentDate.getMonth();
+      // const currentYear = currentDate.getFullYear()+1;
+
+      // const oneYearFromNow = (currentMonth + 1) + currentDayOfMonth + currentYear;
+
+      // return oneYearFromNow
+    // }
   },
   flightNo: {  
     type: Number, 
     min: 10, 
     max: 9999 
   },
-  tickets: [ticketSchema]
+  tickets: [ticketSchema],
+  meals: [{type: Schema.Types.ObjectId, ref: 'Meal'}]
 }, {
   timestamps: true
 })
