@@ -50,25 +50,6 @@ function deleteFlight(req, res) {
   })
 }
 
-// function show(req, res) {
-//   Flight.findById(req.params.id)
-//   .populate('meals')
-//   .then(flight => {
-//     Meal.find({_id: {$nin: flight.meals}})
-//     .then(meals => {
-//       res.render('flights/show', {
-//         flight: flight,
-//         title: "Flight Details",
-//         meals: meals
-//       })
-//     })
-//   })
-//   .catch(err => {
-//     console.log(err)
-//     res.redirect('/')
-//   })
-// }
-
 function show(req, res) {
   // find by the id
   Flight.findById(req.params.id)
@@ -143,22 +124,19 @@ function createTicket(req, res) {
 }
 
 function addMeal(req, res) {
-  // find the movie by it's id
+  
   Flight.findById(req.params.id)
   .then(flight => {
-    // add the id of the performer (req.body.performerId) to the cast array
     flight.meals.push(req.body.mealId)
-    // save the updated movie document
     flight.save()
     .then(() => {
-      // redirect back to the movie show view
       res.redirect(`/flights/${flight._id}`)
     })
   })
-    .catch(err => {
-      console.log(err)
-      res.redirect('/')
-    })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
 }
 
 export {
